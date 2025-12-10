@@ -1,12 +1,13 @@
 :root {
-    --primary-color: #5A189A;
-    --secondary-color: #D4A8FF;
-    --accent-color: #444422;
-    --complementary-color: #3F2559;
-    --text-color: #333333;
-    --light-text-color: #fff;
-    --background-color: #F9F9F9;
-    --font-family: 'Arial', sans-serif;
+    --cream-color: #E4E1ED;
+    --light-cream-color: #F1F0F5;
+    --accent-color: #977BED;
+    --dark-cream-color: #CDC7D9;
+    --light-dark-color: #B9B6BF;
+    --gray-color: #908D94;
+    --dark-color: #161618;
+    --light-color: #F8F8FF;
+    --font-family: 'Roboto', sans-serif;
     --error-color: #FF0000;
     --success-color: #00FF00;
 }
@@ -19,8 +20,8 @@
 
 body {
     font-family: var(--font-family);
-    background-color: var(--background-color);
-    color: var(--text-color);
+    background-color: var(--light-cream-color);
+    color: var(--dark-color);
     line-height: 1.6;
 }
 
@@ -31,11 +32,12 @@ body {
 }
 
 .main-header {
-    padding: 1rem 0;
-    border-bottom: 2px solid var(--complementary-color);
+    padding: .25rem 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--gray-color), transparent 70%);
     position: sticky;
     top: 0;
     z-index: 1000;
+    backdrop-filter: blur(10px);
 }
 .main-header .container {
     display: flex;
@@ -45,7 +47,7 @@ body {
 
 .logo {
     font-size: 1.5rem;
-    color: var(--primary-color);
+    color: var(--accent-color);
     text-decoration: none;
     font-weight: bold;
 }
@@ -59,20 +61,83 @@ body {
 }
 .main-nav ul li a {
     text-decoration: none;
-    color: var(--text-color);
-    font-weight: bold;
+    color: color-mix(in srgb, var(--dark-color), transparent 15%);
     transition: color 0.3s ease;
 }
 .main-nav ul li a:hover {
-    color: var(--primary-color);
-    text-decoration: underline;
+    color: var(--accent-color);
 }
 
 .hero {
-    background-color: var(--primary-color);
-    color: var(--light-text-color);
+    color: var(--light-color);
     text-align: center;
     padding: 100px 0;
+
+     /* Configurações para conter as ondas */
+    position: relative; /* Cria o contexto para ondas */
+    overflow: hidden;   /* Corta o que passar do tamanho da div (evita barra de rolagem horizontal) */
+
+    /* Background */
+    background: linear-gradient(315deg, 
+        rgba(123, 104, 238, 1) 38%, 
+        rgba(151, 123, 237, 1) 68%,
+        rgba(216, 191, 216, 1) 98%
+    );    
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 10; /* Qualquer valor maior que o z-index das ondas (que é 1) */
+}
+
+/* Animação Gradiente */
+@keyframes gradient {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* Configuração Ondas */
+.wave {
+    background: rgba(255, 255, 255, 0.25); 
+    border-radius: 1000% 1000% 0 0;
+    position: absolute;
+    width: 200%;
+    height: 12em;
+    animation: wave 10s -3s linear infinite;
+    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.wave:nth-of-type(2) {
+    bottom: -1.25em;
+    animation: wave 18s linear reverse infinite;
+    opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+    bottom: -2.5em;
+    animation: wave 20s -1s reverse infinite;
+    opacity: 0.9;
+}
+
+/* Animação Ondas */
+@keyframes wave {
+    2% { transform: translateX(1); }
+    25% { transform: translateX(-25%); }
+    50% { transform: translateX(-50%); }
+    75% { transform: translateX(-25%); }
+    100% { transform: translateX(1); }
 }
 
 .hero h2 {
@@ -83,22 +148,24 @@ body {
 .hero p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
+    color: var(--cream-color)
 }
 
 .cta-button {
     display: inline-block;
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-    border: 2px solid var(--secondary-color);
+    background-color: var(--accent-color);
+    color: var(--light-color);
+    border: 2px solid var(--accent-color);
     padding: 12px 24px;
     border-radius: 35px;
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
 }
 
 .cta-button:hover {
     background-color: transparent;
-    color: var(--light-text-color);
-    border: 2px solid #FFF;
+    color: var(--accent-color);
+    border: 2px solid --light-color;
 }
