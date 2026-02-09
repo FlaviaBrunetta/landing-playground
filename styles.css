@@ -1,7 +1,7 @@
 :root {
     --cream-color: #E4E1ED;
     --light-cream-color: #F1F0F5;
-    --accent-color: #977BED;
+    --accent-color: #6754A1;
     --dark-cream-color: #CDC7D9;
     --light-dark-color: #B9B6BF;
     --gray-color: #908D94;
@@ -250,7 +250,7 @@ body {
     margin: 0 auto;
 }
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 .form-group label {
     display: block;
@@ -268,6 +268,12 @@ body {
 .form-group input.invalid,
 .form-group textarea.invalid {
     border-color: var(--error-color);
+}
+.form-group textarea {
+    margin-bottom: -0.5rem;
+}
+ #last-item {
+    margin-bottom: 1rem;
 }
 
 #message {
@@ -298,6 +304,8 @@ body {
     border: 2px solid var(--accent-color);
     padding: 12px 24px;
     text-decoration: none;
+    font-size: 16px;
+    font-family: var(--font-family);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 .submit-button:hover {
